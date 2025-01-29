@@ -2,28 +2,32 @@ Welcome to the XRP Python programming course!
 =============================================
 
 
-Check out the :doc:`intro` section for further information
-
 .. note::
 
    This project is under active development.
 
-Contents
---------
 
 .. toctree::
+   :maxdepth: 1
+   :hidden:
+   :caption: Module 1: Introduction
 
-   intro
+   Introduction/intro
 
    driving_with_blockly
 
    jumping_to_python
+
+   lists
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+   :caption: Module 2: Following LInes
 
    line_following
 
    creating_classes
 
    manhattan_driving
-
-   lists
 
