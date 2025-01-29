@@ -2,9 +2,9 @@
 
 # -- Project information
 
-project = 'Lumache'
-copyright = '2021, Graziella'
-author = 'Graziella'
+project = 'XRP Python Programming'
+copyright = '2025, Brad Miller'
+author = 'Brad Miller'
 
 release = '0.1'
 version = '0.1.0'
