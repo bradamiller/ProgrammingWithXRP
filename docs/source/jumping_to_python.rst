@@ -1,5 +1,6 @@
 Jumping to Python
 =================
+.. _coolreferencelink:
 
 * Importing libraries
 * Using the driving functions
