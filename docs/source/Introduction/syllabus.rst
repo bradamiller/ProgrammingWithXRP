@@ -1,13 +1,12 @@
-Introduction to Programming
----------------------------
+Syllabus: Introduction to Programming
+-------------------------------------
 
 .. image:: Bender_Rodriguez.png
     :width: 400
 
 "My story is a lot like yours, only more interesting ‘cause it involves robots."
 
-Syllabus
-========
+
 The XRP programming class is an introduction to computer science for high school and early
 college age students. Using robots in a computer science makes learning exciting and much more
 engaging. In this class you will write a program that solves an interesting problem, planning
@@ -22,7 +21,7 @@ The idea is that in solving this problem, you will learn basic to intermediate P
 
 You will:
 
-* implement 7 projects, about one per week
+* Implement 7 projects, about one per week
 
 * You will learn to program your robot with **Blockly**, a graphical programming system designed to get
   you familiar with programming and robot concepts very quickly. Then you will learn the more
@@ -57,6 +56,10 @@ reusability of all the code.
 
 Project 1: (Need to figure this out)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+In this project you will program the robot to drive through a virtual *parking lot* navigating from
+one spot to another without crossing any of the lines drawn on the course. It will require getting
+the robot to drive precise distances and make accurate turns in sequence to get through the space.
+You will do this in both Blockly then Python to see how to write programs in both languages.
 
 Project 2: Following a line around a circular course
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
