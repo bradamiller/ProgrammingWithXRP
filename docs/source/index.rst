@@ -13,6 +13,7 @@ Welcome to the XRP Python programming course!
    :caption: Module 1: Introduction
 
    Introduction/intro
+   Introduction/syllabus
 
    driving_with_blockly
 
