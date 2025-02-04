@@ -15,7 +15,7 @@ a path to get from one place to another. Your project will work the same way tha
 to find the shortest path to navigate from one place to another.
 
 Course flow
------------
+===========
 Throughout the course you will program your robot to navigate on a grid from one intersection to another taking the shortest path possible while avoiding obstacles along the way. This algorithm, called Dijkstra's Algorithm, is similar to those used by GPS mapping software such as Google Maps to find the shortest driving route between two points.
 Each week of the course there will be project that you are responsible for completing. Each of those projects will hopefully be built upon to create the final project. 
 The idea is that in solving this problem, you will learn basic to intermediate Python programming to serve as a base for more advanced CS and RBE classes later.
@@ -23,6 +23,10 @@ The idea is that in solving this problem, you will learn basic to intermediate P
 You will:
 
 * implement 7 projects, about one per week
+
+* You will learn to program your robot with **Blockly**, a graphical programming system designed to get
+  you familiar with programming and robot concepts very quickly. Then you will learn the more
+  professional **Python** programming language that is used throughout industry. 
 
 * We will try to do something with the robots most days, so bring them every day to the classroom.
 
@@ -41,4 +45,45 @@ What you'll learn:
 * Top down design for breaking down complex problems into more manageable simpler tasks.
 
 * Testing and debugging techniques to make it easier for program development.
+
+The Projects
+============
+Here is a list of the projects that you will do throughout the class. Each of these projects will be
+built on the code you wrote from the previous project. By building to the large final project,
+you will get an idea of how
+large programs are built up based standard design principles. The code you write each week will be
+reused in the next week, so try to follow the design suggestions that are designed to maximize the
+reusability of all the code.
+
+Project 1: (Need to figure this out)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Project 2: Following a line around a circular course
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Your robot will drive around a circle using the line following sensor. At one point on the circle, there
+is a perpendicular line across the circle where your robot should turn around and continue driving in
+the opposite direction.
+
+Project 3: Navigate on a grid using relative coordinates
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Program your robot to drive on the grid in a square following lines and turning at intersections. The
+robot will have to know how to recognize intersections (hint: same as the previous project), and make
+turns to the next square edge.
+
+Project 4: Navigating on the grid between stated intersections
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+In this project, you will program your robot to first, compute the path between intersections, and then
+follow that path. You will be given a series of intersections that the robot should navigate to.
+
+Project 5: Implementing Dijkstra's Algorithm to compute shortest paths
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+This is similar to the previous project but it uses a technique called Dijkstra's Algorithm to compute
+the shortest path between the intersections. In this more advanced version of the previous program,
+the robot will be able to compute a path so as to avoid blocked intersections on the grid.
+
+Project 6: Detecting blocked intersections while driving
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+In the previous project, you were given the list of blocked intersections to avoid. In this project,
+the robot will detect blocked intersections as it is driving using the rangefinder on the front of the
+bot, then take these into account when planning a path.
 
