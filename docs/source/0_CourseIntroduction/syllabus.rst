@@ -54,8 +54,8 @@ large programs are built up based standard design principles. The code you write
 reused in the next week, so try to follow the design suggestions that are designed to maximize the
 reusability of all the code.
 
-Project 1: (Need to figure this out)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Project 1: Maze parking challenge
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 In this project you will program the robot to drive through a virtual *parking lot* navigating from
 one spot to another without crossing any of the lines drawn on the course. It will require getting
 the robot to drive precise distances and make accurate turns in sequence to get through the space.
