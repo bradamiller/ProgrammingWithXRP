@@ -9,24 +9,68 @@ Welcome to the XRP Python programming course!
 .. toctree::
    :maxdepth: 1
    :hidden:
-   :caption: Module 1: Introduction
+   :caption: Introduction
 
-   Introduction/syllabus
-
-   Module 1 - Parking/driving_with_blockly
-
-   Module 1 - Parking/jumping_to_python
-
-   Module 1 - Parking/lists
+   0_CourseIntroduction/syllabus
 
 .. toctree::
    :maxdepth: 1
    :hidden:
-   :caption: Module 2: Following LInes
+   :caption: Module 1: A Quick Introduction to Programming
 
-   Module 2/line_following
+   1_QuickIntro/objectives
+   1_QuickIntro/driving_with_blockly
+   1_QuickIntro/jumping_to_python
+   1_QuickIntro/lists
 
-   Module 1 - Parking/creating_classes
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+   :caption: Module 2: Driving In Circles
 
-   Module 4 - Manhattan/manhattan_driving
+   2_DrivingInCircles/objectives
+   2_DrivingInCircles/line_following
+   2_DrivingInCircles/creating_classes
 
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+   :caption: Module 3: Relative path navigation
+
+   3_RelativeNavigation/objectives
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+   :caption: Module 4: Driving through Manhattan
+
+   4_ManhattanNavigation/objectives
+   4_ManhattanNavigation/manhattan_driving
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+   :caption: Module 5 - Dijkstras Algorithm
+
+   5_IntroToDijkstra/objectives
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+   :caption: Module 6: Dijkstra on the grid
+
+   6_DijkstraOnTheGrid/objectives
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+   :caption: Module 7: Detecting Blocked Intersections
+
+   7_DetectingBlockedIntersections/objectives
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+   :caption: Module 8: A Look at AI for Programming
+
+   8_ALookAtAIForProgramming/objectives

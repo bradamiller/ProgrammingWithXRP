@@ -20,9 +20,9 @@ https://bradhouse.com/XRP
 
 `bradhouse website <https://bradhouse.com/xrp>`_
 
-:doc:`/Introduction/syllabus` is a link to the Introduction
+:doc:`../0_CourseIntroduction/syllabus` is a link to the Introduction
 
-:doc:`the place to start </Introduction/syllabus>`
+:doc:`the place to start <../0_CourseIntroduction/syllabus>`
 
 
 a link to a :ref:`reference in the document <coolreferencelink>`
