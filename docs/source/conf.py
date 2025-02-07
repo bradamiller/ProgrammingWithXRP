@@ -12,7 +12,7 @@ version = ''
 # -- General configuration
 
 extensions = [
-    'sphinx_tabs.tabs',
+#    'sphinx_tabs.tabs',
 #     'sphinx.ext.duration',
 #     'sphinx.ext.doctest',
 #     'sphinx.ext.autodoc',
