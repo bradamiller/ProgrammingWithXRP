@@ -11,13 +11,14 @@ version = ''
 
 # -- General configuration
 
-# extensions = [
+extensions = [
+    'sphinx_tabs.tabs',
 #     'sphinx.ext.duration',
 #     'sphinx.ext.doctest',
 #     'sphinx.ext.autodoc',
 #     'sphinx.ext.autosummary',
 #     'sphinx.ext.intersphinx',
-# ]
+]
 
 # intersphinx_mapping = {
 #     'python': ('https://docs.python.org/3/', None),
