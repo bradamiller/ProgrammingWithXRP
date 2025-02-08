@@ -28,16 +28,16 @@ https://bradhouse.com/XRP
 a link to a :ref:`reference in the document <coolreferencelink>`
 
 
-.. .. tabs::
+.. tabs::
 
-..    .. tab:: Apples
+   .. tab:: Apples
 
-..       Apples are green, or sometimes red.
+      Apples are green, or sometimes red.
 
-..    .. tab:: Pears
+   .. tab:: Pears
 
-..       Pears are green.
+      Pears are green.
 
-..    .. tab:: Oranges
+   .. tab:: Oranges
 
-..       Oranges are orange.
+      Oranges are orange.
