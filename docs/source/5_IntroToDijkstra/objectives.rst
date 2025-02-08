@@ -1,6 +1,9 @@
 Objectives
 ==========
 
+.. image:: drivingongrid.png
+  :width: 400
+
 The objectives for this unit are to:
 
 * Learn how to use classes to store information about each intersection in the grid

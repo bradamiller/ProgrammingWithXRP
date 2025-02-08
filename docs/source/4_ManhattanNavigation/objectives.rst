@@ -1,11 +1,14 @@
 Objectives
 ==========
 
+.. image:: ManhattanStreets.png
+  :width: 400
+
 The objectives for this module are to:
 
 * Learn about the use of lists and tuples, two important data types in the
   Python language.
-* Be abble to keep track of the robot *pose* (position and heading) in the
+* Learn how to keep track of the robot *pose* (position and heading) in the
   grid while driving.
 * Have the robot navigate to absolute coordinates (intersections defined by
   the row and column indicies.)
