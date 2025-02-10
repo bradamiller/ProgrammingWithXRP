@@ -1,20 +1,10 @@
 Creating classes
 ================
 
-## CSV Table
-
-.. csv-table:: My Table
-    :header: Col 1, Col 2, Col 3
-    :widths: 15, 15, 15
-
-    hello, i, must be going
-    now is, the time, for all
-    here, we, go again
-
-end of the tables is here and this is a new line wit more text. end of the tables is here and this is a
-new line wit more text. 
-end of the tables is here and this is a new line wit more text. end of the tables is here and this is a
-new line wit more text. 
+.. note:: This is not really about creating classes, just a placeholder document for
+   some examples of how to write .rst directives for various things. As they get added
+   other places in the document, they'll get deleted from this file. Eventually it will
+   really be about creating classes.
 
 https://bradhouse.com/XRP
 

@@ -20,6 +20,7 @@ Welcome to the XRP Python programming course!
    :caption: Module 1: A Quick Introduction to Programming
 
    1_QuickIntro/objectives
+   1_QuickIntro/schedule
    1_QuickIntro/driving_with_blockly
    1_QuickIntro/jumping_to_python
    1_QuickIntro/lists
