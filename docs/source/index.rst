@@ -56,6 +56,7 @@ Welcome to the XRP Python programming course!
 
    5_IntroToDijkstra/objectives
    5_IntroToDijkstra/street_navigation
+   5_IntroToDijkstra/implementing_dijkstras_algorithm
 
 .. toctree::
    :maxdepth: 1
