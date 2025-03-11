@@ -1,25 +1,26 @@
-Understanding the line sensor
-=============================
+Getting the XRP to recognize lines
+==================================
 
 Introduction
 ------------
 
-The line following sensor consists of two "reflectance" sensors. Simply put, the
-reflectance sensor shines a light at the ground and measures how much of the 
-light is reflected back. The darker an object is, the less light it reflects.
+The XRP has two **reflectance** sensors mounted under the front bumber. Each
+reflectance sensor shines an infrared light at the ground and measures the intensity of the 
+light reflected from the driving surface. The darker an object is, the less light it reflects.
 The sensor uses infrared light, just like a TV remote, so the light is not 
 visible to the human eye.
 
+
+.. figure:: line_sensors.png
+    :width: 450
+
+    The reflectance sensor as it is mounted on the underside of the robot front bumper.
+
+
 This sensor is perfect for sensing dark lines on a light background! If the 
 sensor is on top of a dark line, less light will be reflected back, and if it is
-not on a line, more light will be reflected back. Students can use this information 
-in their code to let the robot decide what to do in these situations.
-
-The XRP has *two* reflectance sensors, a left sensor and a right sensor. If you
-look at the bottom of your XRP on the sensor board, you will see the two
-sensors. **S1** is the left sensor and **S2** is the right sensor. Later in the
-module, students will learn a way to use both sensors to follow lines very smoothly. 
-For this lesson, focus on getting an intuition for what values to expect from the sensors.
+not on a line, more light will be reflected back. The left and right sensor objects
+return values that are between 0.0 and 1.0 depending on the intensity of the reflected light.
 
 **XRPLib** provides functions to read the values of the reflectance sensors:
 
@@ -33,66 +34,67 @@ For this lesson, focus on getting an intuition for what values to expect from th
     # Reads the right sensor and stores the value in the variable "right"
     right = reflectance.get_right()
 
-Getting Started
----------------
-Before doing anything with a new sensor, students need to have a good understanding 
-of the values it will give in different conditions. For the reflectance 
-sensor, it would be good to know what the sensor reports when it is completely 
-off of the line (seeing a white surface), completely on the line (seeing a 
-black surface), and some "middle of the road" values, when the sensor is half 
-on the line and half off the line.
+Characterizing the sensors
+--------------------------
+Before using a new sensor in an application, it's important to understand
+the values it will return in different conditions. For the reflectance 
+sensor, determine the values the sensor reports when it is:
+
+* completely off the line (seeing a white surface),
+* completely on the line (seeing a black surface),
+* and straddling the line.
 
 .. tip:: 
 
-    Remember that for this exercise students should start by focusing on a single sensor. 
-    Make sure that they center the correct part of the sensor board over
+    Test a single sensor at a time, either the left or right.
+    Make sure that the correct part of the sensor board over
     the line when taking measurements.
 
 .. admonition:: Try it out
 
-    Have students write code to read the value of the chosen reflectance sensor. Then, 
-    have them print out the values in an infinite loop as they move the robot.
-    Move the XRP around on a white surface with a line, and take note of the values the
-    sensor reads.
+    To test the sensor over the surface that will be used, write a program to print the value
+    of the chosen reflectance sensor and then, 
+    print out the values in an infinite loop as the robot is moved around on the white surface
+    with a line, and take record the values the sensor reads.
 
-Discuss with students what they notice from the values measured. The documentation for the 
+What do you notice from the values measured. The documentation for the 
 ``reflectance`` module in **XRPLib** states that the ``get_left()`` and 
-``get_right()`` functions return a number between 0 and 1. Did their values ever 
-reach exactly 0 or exactly 1? Can they tell which range of numbers corresponds to
-seeing white and which range of numbers corresponds to seeing black?
+``get_right()`` functions return a number between 0 and 1. Did the values ever 
+reach exactly 0 or exactly 1? Which range of values corresponds to
+seeing white and which values corresponds to seeing black?
 
-It's good for students to experiment with the reflectance sensor to see what it does, but they
-took this data for a reason. The line following sensor reports back a number, 
-but what we'd really like it to tell us is whether it sees a line or not. To do 
-this, they'll need to select a "threshold" value, where if the sensor reports a 
+Given the values determined in the previous step, what would be a good 
+"threshold" value, such that if the sensor reports a 
 value greater than the threshold, we can confidently assume the sensor is seeing
 a line, and if the sensor reports a value below the threshold, we can assume it 
 is not seeing a line.
 
 .. admonition:: Try it out
 
-    Have students look at their graph and select a threshold value that makes sense to them.
+    Select a threshold value that makes sense.
     A number around halfway between the minimum and the maximum value they 
     measured is a good starting point.
 
-    Have students write a function called ``is_over_line()`` which reads the value of the
-    right reflectance sensor and returns ``True`` if the sensor sees a line
-    (value above the threshold) or ``False`` if it does not. Instruct them not to delete this
-    function when they're done, because they'll use it for the rest of the module!
+    Given the threshold value, write a function called ``is_over_line()`` which returns ``True``
+    if the sensor sees a line
+    (value above the threshold) or ``False`` if it does not. Don't delete this
+    function, because it will be used for the rest of the module!
 
-    Have students print out the result of calling their function in an infinite 
-    loop. Have them move their robot around a surface with lines on it to make sure it 
-    always returns the correct value based on what the sensor is seeing. If they 
-    are getting incorrect values, have them adjust their threshold value.
+    Print out the result of calling the function in an infinite 
+    loop. Move their robot around a surface with lines on it to make sure it 
+    always returns the correct value based on the sensor position relative to the line. If it's
+    returning incorrect values, try adjusting the threshold value.
 
 Drive Until Line 
 ----------------
 
-Now that students have a function to determine if the sensor is over a line, they can use this to drive the robot forward until both sensors detect the line.
+Using the function to determine if the sensor is over a line, write a program to to drive the robot forward until both
+sensors detect the line.
 
 .. admonition:: Try it out
 
-    Have students write code to drive the robot forward until both sensors detect the line. They can use the ``is_over_line()`` function they wrote earlier to check the sensor values.
+    Write a program to drive the robot forward until both sensors detect the line. Use the ``is_over_line()`` function written
+    earlier to check the sensor values.
 
     Here is an example of how they might write this code:
 
