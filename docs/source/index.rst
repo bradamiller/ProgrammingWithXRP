@@ -34,6 +34,7 @@ Welcome to the XRP Python programming course!
    2_DrivingInCircles/objectives
    2_DrivingInCircles/understanding_the_sensor
    2_DrivingInCircles/stay_in_circle
+   2_DrivingInCircles/basketball_drills
    2_DrivingInCircles/line_following
 
 .. toctree::
