@@ -4,7 +4,9 @@ Staying Inside a Circle
 Introduction
 ------------
 
-In this lesson, you will program the XRP to stay inside a circle by using its reflectance sensors to detect the boundary line. The robot will drive forward until it reaches the line, back up, turn a random angle, and then continue driving.
+In this lesson, you will program the XRP to stay inside a circle by using you developed in the previous lesson. This time however, we'll learn how to package code in `functions` to make important blocks of code easier to use. 
+
+We'll then use our function to ensure that the robot stays inside a circular boundary. The robot will drive forward until it reaches the boundary, back up, turn a random angle, and then continue driving.
 
 Functions in Python
 -------------------
@@ -33,7 +35,11 @@ Here is an example of a simple function in Python:
 Writing the `is_over_line` Function
 -----------------------------------
 
-Define a function called ``is_over_line()`` which takes in a threshold value as a parameter. This function should return ``True`` if either of the sensors detects a line (value above the threshold) or ``False`` if neither sensor detects a line.
+Define a function called ``is_over_line()`` which takes in a threshold value as a parameter. This function should return ``True`` if both of the sensors detects a line (value above the threshold) or ``False`` otherwise.
+
+.. note:: 
+
+    Recall how you checked if both sensors detected the line in the previous lesson. You can use the same logic to write the ``is_over_line()`` function.
 
 Here is an example of how you might write this function:
 
@@ -42,7 +48,20 @@ Here is an example of how you might write this function:
     from XRPLib.defaults import *
 
     def is_over_line(threshold):
-        return reflectance.get_left() > threshold and reflectance.get_right() > threshold
+        # Check the left sensor
+        if reflectance.get_left() > threshold:
+            left_over_line = True
+        else:
+            left_over_line = False
+
+        # Check the right sensor
+        if reflectance.get_right() > threshold:
+            right_over_line = True
+        else:
+            right_over_line = False
+
+        # Return True if both sensors are over the line
+        return left_over_line and right_over_line
 
 Next, incorporate this function into your program to drive the robot forward until both sensors detect the line.
 
@@ -53,7 +72,20 @@ Here is an example of how you might modify your code:
     from XRPLib.defaults import *
 
     def is_over_line(threshold):
-        return reflectance.get_left() > threshold and reflectance.get_right() > threshold
+        # Check the left sensor
+        if reflectance.get_left() > threshold:
+            left_over_line = True
+        else:
+            left_over_line = False
+
+        # Check the right sensor
+        if reflectance.get_right() > threshold:
+            right_over_line = True
+        else:
+            right_over_line = False
+
+        # Return True if both sensors are over the line
+        return left_over_line and right_over_line
 
     line_threshold = 0.5  # Example threshold value
 
@@ -62,12 +94,15 @@ Here is an example of how you might modify your code:
 
     # Drive forward until both sensors detect the line
     while not is_over_line(line_threshold):
-        pass
+        pass # This function allows the loop to continue running since all
+             # of the "line checking" code is in the is_over_line function
 
     # Stop the drivetrain
     drivetrain.stop()
 
-Test your code by placing the robot on a surface with a line and observing if it stops when both sensors are over the line. If the robot does not stop correctly, adjust your threshold value or check your ``is_over_line()`` function.
+Test your code by placing the robot on a surface with a line and observing if it stops when both sensors are over the line. If the robot does not stop correctly, adjust your threshold value or check your ``is_over_line()`` function. Your XRP should do something similar to this:
+
+.. figure:: images/stop_at_line.webp
 
 Staying Inside a Circle
 -----------------------
@@ -86,10 +121,23 @@ Here is how you can write this program:
 .. code-block:: python
 
     from XRPLib.defaults import *  
-    import random  
+    import random  # Import a python library to generate random numbers
 
-    def is_over_line(threshold):  
-        return reflectance.get_left() > threshold and reflectance.get_right() > threshold  
+    def is_over_line(threshold):
+        # Check the left sensor
+        if reflectance.get_left() > threshold:
+            left_over_line = True
+        else:
+            left_over_line = False
+
+        # Check the right sensor
+        if reflectance.get_right() > threshold:
+            right_over_line = True
+        else:
+            right_over_line = False
+
+        # Return True if both sensors are over the line
+        return left_over_line and right_over_line
 
     line_threshold = 0.5  # Example threshold value  
 
@@ -121,3 +169,8 @@ Here is how you can write this program:
     Observe how the robot moves—does it successfully stay inside the circle?  
     If the robot sometimes crosses the boundary, try adjusting the threshold value.  
     By implementing this logic, the robot continuously detects the boundary, reacts, and keeps moving inside the circle without escaping!
+
+
+.. error:: 
+
+    add a video 

@@ -106,10 +106,24 @@ Using the knowledge of conditionals, write a program to drive the robot forward 
         # Set the speed of both wheels
         drivetrain.set_speed(5, 5)
 
+        # Initialize sensor states
+        left_over_line = False
+        right_over_line = False
+
         # Drive forward until both sensors detect the line
-        while True:
-            if reflectance.get_left() > threshold and reflectance.get_right() > threshold:
-                break
+        while not (left_over_line and right_over_line):
+        
+            # Check the left sensor
+            if reflectance.get_left() > threshold:
+                left_over_line = True
+            else:
+                left_over_line = False
+
+            # Check the right sensor
+            if reflectance.get_right() > threshold:
+                right_over_line = True
+            else:
+                right_over_line = False
 
         # Stop the drivetrain
         drivetrain.stop()
