@@ -9,39 +9,29 @@ while driving? What if the robot needs to drive along a complex curve? It's
 easier to follow a line than it is to exactly measure out the course the robot
 needs to follow and program it.
 
+.. note:: 
+    Relying solely on positional estimates, known as odometry, can lead to errors over time due to factors like wheel slippage or uneven surfaces. To navigate more accurately and reliably, we often use sensor-based methods, such as line following. This approach helps our robot stay on track and reach its destination more precisely.
+
+    Let's dive into how we can make our robot follow a line using reflectance sensors!
+
+
 How do we follow a line?
 ------------------------
 
-Consider using two reflectance sensors. As a refresher, they give a reading
-from 0 (black) to 1 (white). Assuming that the reflectance sensors are
-placed on the left and right sides of the robot, they will at least partially
-read the black line when the robot is centered on the line. What type of logic
-would we need if we wanted to follow the center of the line?
+Imagine you're driving a little robot car that wants to stay on a black line on the floor. How would you drive the car to keep it on the line? 
+Remember that the line sensors give a reading from 0 (black) to 1 (white). Assuming that the reflectance sensors are
+placed on the left and right sides of the robot, the readings from the sensors can inform you when the robot is centered on the line, or, 
+when one side is veering off the line. We can write out the logic for this as follows:
 
-Well, if both reflectance sensors read black, it means the robot is perfectly on
-the line, and we'd want to go straight, setting the motors at the same speed.
-But if one of the reflectance sensors reads grey or white, it would mean that
-the robot is partially or completely off the line. We'd want to correct this by
-steering it back to the center.
+* If both sensors read approximately the same value, the robot is centered on the line and should go straight.
+* If the `left` sensor reads that it is off the line (the difference between the `left` and `right` sensor readings is greater than a threshold), the robot should turn right.
+* If the `right` sensor reads that it is off the line (the difference between the `right` and `left` sensor readings is greater than a threshold), the robot should turn left.
 
-If the left sensor reads closer to white, that means we're too far to the left,
-so we need to turn slightly to the right. If the right sensor reads closer to
-white, that means we're too far to the right, so we need to turn slightly to the
-left.
+This type of control architecture is known as an *on-off controller*, where the robot switches between two states (on the line or off the line) and takes action accordingly. In
+this kind of controller, there's no smooth turning, just quick corrections left or right to stay on the line. It's a bit like tapping the steering wheel back and forth to keep a car centered in its lane!
 
-And that's it! We want to keep polling (getting the value of) the reflectance
-sensors quickly, and at each time determine whether they are closer to white
-(with a value less than 0.5) or closer to black (with a value greater than 0.5),
-and depending on the result, either set the motor to turn right (set left motor
-speed to be faster than right) or turn left (set right motor speed to be faster
-than left).
-
-This seems like a solution involving an if-else statement. Our condition would
-be related to whether the values are greater or less than 0.5.
-
-As a quick reminder, an :code:`if` / :code:`else` statement allows you to run different blocks of
-code based on a *condition* (the same kind of *condition* you used in a
-:code:`while` loop)
+This seems like the perfect problem for an if-else statement! As a quick reminder, an :code:`if` / :code:`else` statement allows you to run different blocks of
+code based on a *condition* (the same kind of *condition* you used in a :code:`while` loop)
 
 Consider the following example code:
 
@@ -59,17 +49,18 @@ Consider the following example code:
             """Checks if both sensors detect the line based on the given threshold."""
             return self.left_sensor() > threshold and self.right_sensor() > threshold
 
-        def on_off_signal(self):
-            """Generates control signals based on sensor readings."""
+        def on_off_signal(self, threshold):
+            """Generates control signals based on sensor readings and a threshold."""
             left_sensor = self.left_sensor()
             right_sensor = self.right_sensor()
+            error = left_sensor - right_sensor
             
-            if left_sensor < 0.5 and right_sensor < 0.5:
-                return 50, 50  # Go straight
-            elif left_sensor >= 0.5:
-                return 30, 50  # Turn right
-            elif right_sensor >= 0.5:
-                return 50, 30  # Turn left
+            if abs(error) < threshold:
+            return 50, 50  # Go straight
+            elif error > threshold:
+            return 30, 50  # Turn right
+            elif error < -threshold:
+            return 50, 30  # Turn left
 
     line_tracker = LineTracker()
 
@@ -78,30 +69,11 @@ Consider the following example code:
         drivetrain.set_speed(left_speed, right_speed)
 
 In this example code, we adjust the motor speeds based on the values of the
-left and right reflectance sensors. You could put whatever code you want in the
-blocks instead. For example, you could have the robot turn clockwise or
-counterclockwise depending on a condition using an :code:`if` / :code:`else`
-statement.
+left and right reflectance sensors. Note that we denote the difference between the left and right sensor readings as the `error`.
+This is because, in a perfect scenario, the robot would be centered on the line, and the difference between the left and right sensor readings would be zero.
+Thus, the `error` is a measure of how far off the line the robot is. We then use this `error` to determine the motor speeds for the robot to stay on the line.
 
-.. figure:: images/on_off_control.png
-    :align: center
+.. error:: 
+    include a vid 
 
-    Actions your robot should take based on what the sensors see.
-
-Above is an illustration of how we'd want the robot to act based on the readings
-of the sensors.
-
-.. admonition:: Try it out
-
-    Write some code which uses an :code:`if` / :code:`else` statement to turn 
-    the robot one direction or another based on the reflectance sensors. To do 
-    this, you'll use the :code:`drivetrain.set_speed` function using different
-    speeds for the left and right wheels. Remember, using a higher speed on the
-    left wheel will make the robot turn right, and vice versa. You can use your 
-    ``is_over_line()`` function to check if the sensors see a line.
-
-    You will need to experiment with different speed values for each wheel; too
-    high and your robot will drive off the line before it gets a chance to
-    correct for it, too low and your robot will not correct in time and will
-    spin in circles. Try to get your robot to follow the line as fast as you
-    can!
+Next time, we'll see how we can use a more intuitive approach to follow the lines in a much smoother way. Stay tuned!
