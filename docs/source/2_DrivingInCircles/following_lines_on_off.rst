@@ -1,5 +1,5 @@
-Following Lines: On-Off
-=======================
+Following Lines: On-Off Control
+===============================
 
 Now, let's turn our attention towards one of the core challenges in the final
 project - following a line. In the project, the robot will need to drive to
