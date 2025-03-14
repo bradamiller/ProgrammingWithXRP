@@ -86,8 +86,8 @@ Here is an example:
 
 In this example, if the `sensor_value` is greater than the `threshold`, the program will print "Sensor is over the line". Otherwise, it will print "Sensor is not over the line".
 
-Drive Until Line
-----------------
+Stopping at a Line
+------------------
 
 Using the knowledge of conditionals, write a program to drive the robot forward until both sensors detect the line.
 
@@ -114,7 +114,7 @@ Using the knowledge of conditionals, write a program to drive the robot forward 
         # Stop the drivetrain
         drivetrain.stop()
 
-    Test your code by placing the robot on a surface with a line and observing if it stops when both sensors are over the line. If the robot does not stop correctly, adjust your threshold value or check your conditional statement. Here is an example of how the XRP should behave:
+    Test your code by placing the robot on a surface with a line and observing if it stops when both sensors are over the line. If the robot does not stop correctly, adjust your threshold value or check your conditional statement. 
 
 .. figure:: images/stop_at_line.webp
     :width: 450
