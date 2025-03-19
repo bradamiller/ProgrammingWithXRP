@@ -1,7 +1,10 @@
 Following the Line: Proportional Control 
 ========================================
 
-In the previous lesson, we design a *on-off* controller which had discrete actions depending on the error between the two sensors. However, this controller is not very smooth and can lead to oscillations. In this lesson, we will introduce a more advanced control technique called *proportional control* to make the robot follow the line more smoothly. 
+Introduction to Proportional Control
+------------------------------------
+
+In the previous lesson, we designed a *on-off* controller which had discrete actions depending on the error between the two sensors. However, this controller is not very smooth and can lead to oscillations. In this lesson, we will introduce a more advanced control technique called *proportional control* to make the robot follow the line more smoothly. 
 
 Line following with proportional control is a common technique used in robotics to keep a robot on a desired path. The idea behind proportional control is to make corrections relative to the amount of error. That is, if there is a large amount of error, the robot will try to correct quickly, and if there is a small amount of error, the robot will make small corrections to get to the desired position.
 
