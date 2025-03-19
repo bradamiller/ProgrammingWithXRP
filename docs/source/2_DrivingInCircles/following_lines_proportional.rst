@@ -8,71 +8,42 @@ In the previous lesson, we designed a *on-off* controller which had discrete act
 
 Line following with proportional control is a common technique used in robotics to keep a robot on a desired path. The idea behind proportional control is to make corrections relative to the amount of error. That is, if there is a large amount of error, the robot will try to correct quickly, and if there is a small amount of error, the robot will make small corrections to get to the desired position.
 
-Here is our previous code snippet using *on-off* control:
+Instead of having discrete actions depending on the error, let's define a proportional signal that is proportional to the error between the two sensors. The proportional signal will be used to adjust the motor speeds based on the error. To do this, let's define a `proportional_signal` function in the `LineTracker` class which takes in a 'proportional gain' (KP) and follows the line based on the error between the sensors.
 
 .. code-block:: python
 
     from XRPLib.defaults import *
 
     class LineTracker:
-        def __init__(self):
-            """Initializes the line tracker by setting up the reflectance sensors."""
-            self.left_sensor = reflectance.get_left
-            self.right_sensor = reflectance.get_right
+        def __init__(self, drivetrain):
+            """Initializes the line tracker with a LineSensor object and a drivetrain object."""
+            self.sensor = LineSensor()
+            self.drivetrain = drivetrain
 
-        def is_over_line(self, threshold):
-            """Checks if both sensors detect the line based on the given threshold."""
-            return self.left_sensor() > threshold and self.right_sensor() > threshold
+        def drive_until_line(self, threshold, speed):
+            """Drives forward until the line sensors detect the robot is over the line."""
+            self.drivetrain.set_speed(speed, speed)
+            while not self.is_over_line(threshold):
+                pass  # Keep driving until the line is detected
+            self.drivetrain.stop()
 
-        def on_off_signal(self, threshold):
-            """Generates control signals based on sensor readings and a threshold."""
-            left_sensor = self.left_sensor()
-            right_sensor = self.right_sensor()
-            error = left_sensor - right_sensor
-            
-            if abs(error) < threshold:
-            return 50, 50  # Go straight
-            elif error > threshold:
-            return 30, 50  # Turn right
+        def line_follow_on_off(self, threshold, speed):
+            """Adjusts the motor speeds based on the error between the left and right sensor readings."""
+            error = self.sensor.get_error()
+            if error > threshold:
+                self.drivetrain.set_speed(speed, speed - 0.1)
             elif error < -threshold:
-            return 50, 30  # Turn left
+                self.drivetrain.set_speed(speed - 0.1, speed)
+            else:
+                self.drivetrain.set_speed(speed, speed)
 
-Instead of having discrete actions depending on the error, let's define a proportional signal that is proportional to the error between the two sensors. The proportional signal will be used to adjust the motor speeds based on the error. To do this, let's define a `proportional_signal` function in the `LineTracker` class which takes in a 'proportional gain' (KP) and returns the signal proportional to the error. Try to design your function such that you can quickly replace the `on_off_signal` function with the `proportional_signal` function.
-
-.. code-block:: python
-
-    from XRPLib.defaults import *
-
-    class LineTracker:
-        def __init__(self):
-            """Initializes the line tracker by setting up the reflectance sensors."""
-            self.left_sensor = reflectance.get_left
-            self.right_sensor = reflectance.get_right
-
-        def is_over_line(self, threshold):
-            """Checks if both sensors detect the line based on the given threshold."""
-            return self.left_sensor() > threshold and self.right_sensor() > threshold
-
-        def on_off_signal(self, threshold):
-            """Generates control signals based on sensor readings and a threshold."""
-            left_sensor = self.left_sensor()
-            right_sensor = self.right_sensor()
-            error = left_sensor - right_sensor
-            
-            if abs(error) < threshold:
-            return 50, 50  # Go straight
-            elif error > threshold:
-            return 30, 50  # Turn right
-            elif error < -threshold:
-            return 50, 30  # Turn left
-
-        def proportional_signal(self, KP):
-            """Generates a proportional signal based on the error between the sensors."""
-            error = self.left_sensor() - self.right_sensor()
+        def line_follow_proportional(self, KP, base_speed):
+            """Follows the line using proportional control."""
+            error = self.sensor.get_error()
             proportional_signal = KP * error
-            left_motor_effort = 50 - proportional_signal
-            right_motor_effort = 50 + proportional_signal
-            return left_motor_effort, right_motor_effort
+            left_speed = base_speed - proportional_signal
+            right_speed = base_speed + proportional_signal
+            self.drivetrain.set_speed(left_speed, right_speed)
 
 Tuning Proportional Gain
 ------------------------
@@ -93,42 +64,60 @@ Try to set up some code to start line following using the proportional control s
 
     from XRPLib.defaults import *
 
-    class LineTracker:
+    class LineSensor:
         def __init__(self):
-            """Initializes the line tracker by setting up the reflectance sensors."""
+            """Initializes the line sensor by setting up the reflectance sensors."""
             self.left_sensor = reflectance.get_left
             self.right_sensor = reflectance.get_right
 
         def is_over_line(self, threshold):
-            """Checks if both sensors detect the line based on the given threshold."""
-            return self.left_sensor() > threshold and self.right_sensor() > threshold
+            """Checks if either sensor is over the line."""
+            left_over_line = self.left_sensor() > threshold
+            right_over_line = self.right_sensor() > threshold
+            return left_over_line and right_over_line
 
-        def on_off_signal(self, threshold):
-            """Generates control signals based on sensor readings and a threshold."""
-            left_sensor = self.left_sensor()
-            right_sensor = self.right_sensor()
-            error = left_sensor - right_sensor
-            
-            if abs(error) < threshold:
-            return 50, 50  # Go straight
-            elif error > threshold:
-            return 30, 50  # Turn right
+        def report_values(self):
+            left = self.reflectance.get_left()
+            right = self.reflectance.get_right()
+            print(f'left: {left}, right: {right}')
+
+        def get_error(self):
+            """Calculates the error as the difference between the left and right sensor readings."""
+            left = self.left_sensor()
+            right = self.right_sensor()
+            return left - right
+
+    class LineTracker:
+        def __init__(self, drivetrain):
+            """Initializes the line tracker with a LineSensor object and a drivetrain object."""
+            self.sensor = LineSensor()
+            self.drivetrain = drivetrain
+
+        def line_follow_on_off(self, threshold, speed):
+            """Adjusts the motor speeds based on the error between the left and right sensor readings."""
+            error = self.sensor.get_error()
+            if error > threshold:
+                self.drivetrain.set_speed(speed, speed - 0.1)
             elif error < -threshold:
-            return 50, 30  # Turn left
+                self.drivetrain.set_speed(speed - 0.1, speed)
+            else:
+                self.drivetrain.set_speed(speed, speed)
 
-        def proportional_signal(self, KP):
-            """Generates a proportional signal based on the error between the sensors."""
-            error = self.left_sensor() - self.right_sensor()
+        def proportional_signal(self, KP, base_speed):
+            """Generates motor speeds using proportional control based on the error between the sensors."""
+            error = self.sensor.get_error()
             proportional_signal = KP * error
-            left_motor_effort = 50 - proportional_signal
-            right_motor_effort = 50 + proportional_signal
+            left_motor_effort = base_speed - proportional_signal
+            right_motor_effort = base_speed + proportional_signal
             return left_motor_effort, right_motor_effort
 
-    line_tracker = LineTracker()
-    KP = 0.1 # Start with a small KP value 
+    drivetrain = Drivetrain()  # Initialize the drivetrain
+    line_tracker = LineTracker(drivetrain)
+    KP = 0.1  # Start with a small KP value
+    base_speed = 50  # Base speed for the robot
 
     while True:
-        left_speed, right_speed = line_tracker.proportional_signal(KP)
+        left_speed, right_speed = line_tracker.proportional_signal(KP, base_speed)
         drivetrain.set_speed(left_speed, right_speed)
 
 Here's what that a well-tuned controller looks like:
@@ -158,46 +147,18 @@ Here's a sample code snippet to get you started:
 
     from XRPLib.defaults import *
 
-    class LineTracker:
-        def __init__(self):
-            """Initializes the line tracker by setting up the reflectance sensors."""
-            self.left_sensor = reflectance.get_left
-            self.right_sensor = reflectance.get_right
-
-        def is_over_line(self, threshold):
-            """Checks if both sensors detect the line based on the given threshold."""
-            return self.left_sensor() > threshold and self.right_sensor() > threshold
-
-        def on_off_signal(self, threshold):
-            """Generates control signals based on sensor readings and a threshold."""
-            left_sensor = self.left_sensor()
-            right_sensor = self.right_sensor()
-            error = left_sensor - right_sensor
-            
-            if abs(error) < threshold:
-            return 50, 50  # Go straight
-            elif error > threshold:
-            return 30, 50  # Turn right
-            elif error < -threshold:
-            return 50, 30  # Turn left
-
-        def proportional_signal(self, KP):
-            """Generates a proportional signal based on the error between the sensors."""
-            error = self.left_sensor() - self.right_sensor()
-            proportional_signal = KP * error
-            left_motor_effort = 50 - proportional_signal
-            right_motor_effort = 50 + proportional_signal
-            return left_motor_effort, right_motor_effort
+    # Class definitions omitted for brevity
 
     KP = 0.1  # TODO: replace with your value
     line_threshold = 0.5  # TODO: replace with your value
-    line_tracker = LineTracker()
+    drivetrain = Drivetrain()  # Initialize the drivetrain
+    line_tracker = LineTracker(drivetrain)
 
     while True:
-        left_speed, right_speed = line_tracker.proportional_signal(KP)
+        left_speed, right_speed = line_tracker.proportional_signal(KP, base_speed=50)
         drivetrain.set_speed(left_speed, right_speed)
         
-        if line_tracker.is_over_line(line_threshold):
+        if line_tracker.sensor.is_over_line(line_threshold):
             # Code to turn the robot around
             drivetrain.turn_degrees(180)
             time.sleep(1)  # Adjust the sleep time to complete the turn
