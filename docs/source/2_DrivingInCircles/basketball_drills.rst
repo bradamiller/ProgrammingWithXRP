@@ -25,7 +25,7 @@ Using functionality from our previous lessons, let's create two classes: `LineSe
 - `LineTracker` will use a `LineSensor` object to manage line-tracking functionality and provide higher-level operations.
 
 Class Implementation
------------------
+--------------------
 
 Let's first implement thee `LineSensor` class. As a reminder, the `LineSensor` class will solely return information directly from the reflectance sensors.
 
