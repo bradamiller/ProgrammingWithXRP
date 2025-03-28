@@ -14,6 +14,7 @@ Welcome to the XRP Python programming course!
    0_CourseIntroduction/syllabus
    0_CourseIntroduction/central_problem
    0_CourseIntroduction/place_holder
+   0_CourseIntroduction/styling_guide
 
 .. toctree::
    :maxdepth: 1
