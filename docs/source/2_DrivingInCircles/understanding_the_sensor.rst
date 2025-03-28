@@ -128,6 +128,26 @@ Using the knowledge of conditionals, write a program to drive the robot forward 
         # Stop the drivetrain
         drivetrain.stop()
 
+.. note::
+
+    You could also write this in a more concise way: 
+
+    .. code-block:: python
+
+        from XRPLib.defaults import *
+
+        threshold = 0.5  # Example threshold value
+
+        # Set the speed of both wheels
+        drivetrain.set_speed(5, 5)
+
+        # Drive forward until both sensors detect the line
+        while not (reflectance.get_left() > threshold and reflectance.get_right() > threshold):
+            pass
+        
+        # Stop the drivetrain
+        drivetrain.stop()
+
     Test your code by placing the robot on a surface with a line and observing if it stops when both sensors are over the line. If the robot does not stop correctly, adjust your threshold value or check your conditional statement. 
 
 .. figure:: images/stop_at_line.webp

@@ -63,6 +63,19 @@ Here is an example of how you might write this function:
         # Return True if both sensors are over the line
         return left_over_line and right_over_line
 
+.. note::
+
+    Like before, note that you can write the ``is_over_line()`` function in a more concise way: 
+
+    .. code-block:: python
+
+        from XRPLib.defaults import *
+
+        def is_over_line(threshold):
+            return reflectance.get_left() > threshold and reflectance.get_right() > threshold
+
+    To increase readability, we will write the ``is_over_line()`` function in the previous way to make it easier to understand.
+
 Next, incorporate this function into your program to drive the robot forward until both sensors detect the line.
 
 Here is an example of how you might modify your code:
