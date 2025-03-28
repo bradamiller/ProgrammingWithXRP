@@ -1,6 +1,14 @@
 Staying Inside a Circle
 =======================
 
+**Daily Goals**
+
+* Understand the concept and benefits of using functions in Python for code organization and reuse.
+* Learn how to define a function with parameters and a return value.
+* Write a function called ``is_over_line()`` that checks if both of the robot's reflectance sensors are over a line using a specified threshold.
+* Learn how to import and use the `random` library in Python to generate random numbers.
+* Program the XRP robot to stay inside a circular boundary by detecting the line, backing up, and turning at a random angle.
+
 Introduction
 ------------
 
@@ -234,4 +242,14 @@ Here's the Python code that will make the XRP robot stay inside the circle:
 
 .. error::
 
-    add a vid 
+    add a vid
+
+**Recap**
+
+Today, you have:
+
+* Understood the benefits of using functions to organize and reuse code in Python.
+* Learned how to define a function called ``is_over_line()`` that takes a threshold as a parameter and returns ``True`` if both reflectance sensors detect a line, and ``False`` otherwise.
+* Practiced calling the ``is_over_line()`` function in your main program to check the robot's sensor state.
+* Learned how to import and use the `random` library to generate random integer values for the robot's turning angle.
+* Programmed the XRP robot to stay within a circular boundary by implementing the following behavior: drive forward, detect the line using the ``is_over_line()`` function, back up, turn by a random angle, and repeat.

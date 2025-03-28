@@ -1,6 +1,15 @@
 Sensing Lines
 =============
 
+**Daily Goals**
+
+* Understand how the XRP robot's reflectance sensors work to detect lines.
+* Learn how to read values from the left and right reflectance sensors using **XRPLib**.
+* Characterize the reflectance sensors by observing the values they return over different surfaces (white, black line, partially over the line).
+* Determine an appropriate threshold value to differentiate between the line and the background.
+* Learn about conditional statements (`if`/`else`) in Python and how they can be used to make decisions based on sensor input.
+* Write a program that makes the XRP robot drive forward and stop when both reflectance sensors detect a line.
+
 Introduction
 ------------
 
@@ -179,3 +188,14 @@ Now, let's use what we've learned about sensor values and conditional statements
     :width: 450
 
     The XRP driving forward until both sensors detect the line.
+
+**Recap**
+
+Today, you have:
+
+* Learned that the XRP robot uses reflectance sensors to "see" lines by measuring the reflection of infrared light.
+* Discovered how to read the values from the left and right reflectance sensors using `reflectance.get_left()` and `reflectance.get_right()` in **XRPLib**.
+* Characterized the behavior of the reflectance sensors by observing the range of values they produce over white surfaces, black lines, and when partially covering a line.
+* Understood the importance of choosing an appropriate threshold value to distinguish between the line and the background based on sensor readings.
+* Been introduced to conditional statements (`if`/`else`) in Python and how they allow your robot to make decisions based on sensor data.
+* Written a Python program that makes the XRP robot drive forward and automatically stop when both of its reflectance sensors detect a dark line.

@@ -1,6 +1,15 @@
 Basketball Drills
 =================
 
+**Daily Goals**
+
+* Understand the concept of classes in Python and how they help organize code.
+* Learn about the different parts of a class: attributes, methods, and the constructor (`__init__`).
+* Implement a `LineSensor` class to encapsulate the functionality of reading and interpreting data from the robot's reflectance sensors.
+* Implement a `LineTracker` class that utilizes the `LineSensor` to perform line-following actions, such as driving until a line is detected.
+* Understand how to use lists in Python to store sequences of data.
+* Program the XRP robot to perform a "pacer" basketball drill by driving to specified distances and returning to a line.
+
 Introduction
 ------------
 
@@ -221,6 +230,17 @@ Modify the list of distances and see how it changes the robot's movement.
 
 By using classes like ``LineSensor`` and ``LineTracker``, we've made our code more organized and easier to understand. Each class has a specific job, making it simpler to manage and modify our robot's behavior for the basketball drills.
 
-.. error:: 
+.. error::
 
-    add a video 
+    add a video
+
+**Recap**
+
+Today, you have:
+
+* Learned about the fundamental concept of classes in Python and how they help in organizing and structuring code into reusable components.
+* Understood the key components of a class, including attributes (data), methods (functions within a class), and the constructor (`__init__`) for initializing objects.
+* Implemented a `LineSensor` class to handle the direct interaction with the XRP robot's reflectance sensors, including reading sensor values and determining if a line is detected.
+* Implemented a `LineTracker` class that utilizes the `LineSensor` object to perform a higher-level action: driving the robot until a line is detected.
+* Learned how to use lists in Python to store a collection of data, specifically a sequence of distances for the basketball drill.
+* Programmed the XRP robot to perform a "pacer" basketball drill, which involves driving to a series of predefined distances and then using the `LineTracker` to return to a starting line.

@@ -1,6 +1,16 @@
 Following Lines: On-Off Control
 ===============================
 
+**Daily Goals**
+
+* Understand the limitations of odometry (estimating position based on wheel turns) for precise navigation.
+* Learn how reflectance sensors can be used for line following as a more accurate sensor-based navigation method.
+* Understand the basic logic of on-off control for line following: going straight when centered, turning right when veering left, and turning left when veering right.
+* Learn how to calculate the error between left and right sensor readings to determine the robot's position relative to the line.
+* Modify the ``LineSensor`` class to include a ``get_error`` function that calculates the difference between left and right sensor readings.
+* Modify the ``LineTracker`` class to include a ``line_follow_on_off`` function that implements on-off control for line following.
+* Program the XRP robot to follow a line using the on-off control method.
+
 Introduction
 ------------
 
@@ -63,14 +73,6 @@ Let's add a new function called ``get_error`` to our ``LineSensor`` class that c
             right = self.right_sensor()
             return left - right
 
-In this ``LineTracker`` class, the ``line_follow_on_off`` function takes a ``threshold`` (a small value to decide when the robot is significantly off-center) and a ``speed`` as input. Here's how it works:
-
-* It first gets the ``error`` value by calling ``self.sensor.get_error()``.
-* It then uses ``if`` and ``elif`` (else if) statements to check the value of the ``error``:
-    * If ``error`` is greater than the ``threshold`` (meaning the left sensor is seeing more of the white surface), it slightly reduces the speed of the right wheel, causing the robot to turn right.
-    * If ``error`` is less than the negative of the ``threshold`` (meaning the right sensor is seeing more of the white surface), it slightly reduces the speed of the left wheel, causing the robot to turn left.
-    * If the ``error`` is within the range of ``-threshold`` to ``threshold`` (meaning the robot is likely close to the center of the line), it sets both wheel speeds to the same value, making the robot go straight.
-
 Now, let's modify our ``LineTracker`` class to use this ``get_error`` function to make the robot follow a line using our on-off control logic. We'll add a new function called ``line_follow_on_off``:
 
 .. code-block:: python
@@ -90,27 +92,27 @@ Now, let's modify our ``LineTracker`` class to use this ``get_error`` function t
                 pass  # Keep driving until the line is detected
             self.drivetrain.stop()
 
-        def line_follow_on_off(self, threshold, speed):
+        def line_follow_on_off(self, speed):
             """Adjusts the motor speeds based on the error between the left and right sensor readings."""
             error = self.sensor.get_error()
-            if error > threshold:
+            if error > 0:
                 # If the error is positive (left sensor sees more white), turn right by slightly reducing the right wheel speed
                 self.drivetrain.set_speed(speed, speed - 0.1)
-            elif error < -threshold:
+            elif error < 0:
                 # If the error is negative (right sensor sees more white), turn left by slightly reducing the left wheel speed
                 self.drivetrain.set_speed(speed - 0.1, speed)
             else:
                 # If the error is close to zero (robot is likely centered), go straight
                 self.drivetrain.set_speed(speed, speed)
 
-In this ``LineTracker`` class, the ``line_follow_on_off`` function takes a ``threshold`` (a small value to decide when the robot is significantly off-center) and a ``speed`` as input. Here's how it works:
+In this ``LineTracker`` class, the ``line_follow_on_off`` function now takes only a ``speed`` as input. Here's how it works:
 
 1.  It first gets the ``error`` value by calling ``self.sensor.get_error()``.
-2.  It then uses ``if`` and ``elif`` (else if) statements to check the value of the ``error``:
+2.  It then uses ``if`` and ``elif`` (else if) statements to check the sign of the ``error``:
 
-    * If ``error`` is greater than the ``threshold`` (meaning the left sensor is seeing more of the white surface), it slightly reduces the speed of the right wheel, causing the robot to turn right.
-    * If ``error`` is less than the negative of the ``threshold`` (meaning the right sensor is seeing more of the white surface), it slightly reduces the speed of the left wheel, causing the robot to turn left.
-    * If the ``error`` is within the range of ``-threshold`` to ``threshold`` (meaning the robot is likely close to the center of the line), it sets both wheel speeds to the same value, making the robot go straight.
+    * If ``error`` is greater than 0 (meaning the left sensor is seeing more of the white surface), it slightly reduces the speed of the right wheel, causing the robot to turn right.
+    * If ``error`` is less than 0 (meaning the right sensor is seeing more of the white surface), it slightly reduces the speed of the left wheel, causing the robot to turn left.
+    * If the ``error`` is equal to 0 (meaning the robot is likely perfectly centered on the line), it sets both wheel speeds to the same value, making the robot go straight.
 
 Now, let's see how we can use these modified classes in our main program to make the XRP robot follow a line:
 
@@ -119,18 +121,4 @@ Now, let's see how we can use these modified classes in our main program to make
     from XRPLib.defaults import *
 
     # Initialize the line tracker by creating an instance of the LineTracker class
-    line_tracker = LineTracker(drivetrain)
-
-    # Tell the line tracker to follow the line using the on-off control method
-    # We'll use a threshold of 0.1 and a base speed of 0.5 (you might need to adjust these values)
-    line_tracker.line_follow_on_off(0.1, 0.5)
-
-In this code, we first create an instance of our ``LineTracker`` class, giving it the robot's ``drivetrain``. Then, we call the ``line_follow_on_off`` function on our ``line_tracker`` object, providing a ``threshold`` value of ``0.1`` and a base ``speed`` of ``0.5``. You might need to experiment with these values to find what works best for your robot and the line you are trying to follow.
-
-Remember that the ``error`` value we calculate is a measure of how far off the line the robot is. A perfect error of zero means the robot is perfectly centered. Our ``line_follow_on_off`` function uses this error to make decisions about how to adjust the motor speeds to keep the robot on the line.
-
-.. error::
-
-    Unfortunately, as a large language model, I cannot directly add video files to this document. However, a video here would really help show how the robot makes those quick left and right adjustments to stay on the line. You might consider adding a link to a video or embedding it in your learning materials.
-
-Next time, we'll explore a more advanced and smoother way to make the robot follow lines using a technique called Proportional control. Stay tuned!
+    line_tracker = Line
