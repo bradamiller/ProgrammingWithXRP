@@ -122,3 +122,21 @@ Now, let's see how we can use these modified classes in our main program to make
 
     # Initialize the line tracker by creating an instance of the LineTracker class
     line_tracker = Line
+
+.. error::
+
+    Unfortunately, as a large language model, I cannot directly add video files to this document. However, a video here would really help show how the robot makes those quick left and right adjustments to stay on the line. You might consider adding a link to a video or embedding it in your learning materials.
+
+Next time, we'll explore a more advanced and smoother way to make the robot follow lines using a technique called Proportional control.
+
+**Recap**
+
+Today, you have:
+
+* Learned about the limitations of relying solely on odometry for precise robot navigation.
+* Understood how reflectance sensors can provide more accurate navigation through line following.
+* Grasped the concept of on-off control for line following, where the robot makes discrete steering adjustments based on sensor readings.
+* Learned how to calculate the error between the left and right reflectance sensor readings to determine the robot's deviation from the line.
+* Modified the `LineSensor` class by adding a `get_error` method to calculate this error.
+* Modified the `LineTracker` class by adding a `line_follow_on_off` method to implement the on-off control logic.
+* Gained the ability to program the XRP robot to follow a line using the on-off control strategy.
