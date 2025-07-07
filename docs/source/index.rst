@@ -13,6 +13,8 @@ Welcome to the XRP Python programming course!
 
    0_CourseIntroduction/syllabus
    0_CourseIntroduction/central_problem
+   0_CourseIntroduction/place_holder
+   0_CourseIntroduction/styling_guide
 
 .. toctree::
    :maxdepth: 1
@@ -31,8 +33,11 @@ Welcome to the XRP Python programming course!
    :caption: Module 2: Driving In Circles
 
    2_DrivingInCircles/objectives
-   2_DrivingInCircles/line_following
-   2_DrivingInCircles/creating_classes
+   2_DrivingInCircles/understanding_the_sensor
+   2_DrivingInCircles/stay_in_circle
+   2_DrivingInCircles/basketball_drills
+   2_DrivingInCircles/following_lines_on_off
+   2_DrivingInCircles/following_lines_proportional
 
 .. toctree::
    :maxdepth: 1
