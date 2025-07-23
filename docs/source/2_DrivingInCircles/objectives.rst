@@ -1,5 +1,5 @@
-Objectives
-==========
+Module 2 - Objectives
+=====================
 
 The objectives for this module are to:
 

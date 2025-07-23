@@ -1,5 +1,5 @@
-Objectives
-==========
+Objectives - Module 4
+=====================
 
 .. image:: ManhattanStreets.png
   :width: 400

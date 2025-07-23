@@ -1,5 +1,5 @@
-Objectives
-==========
+Objectives - Module 3
+=====================
 
 The objectives for this module are to learn:
 

@@ -1,5 +1,5 @@
-Objectives
-==========
+Objectives - Module 7
+=====================
 
 In the past modules, you suppled the blocked intersections as a list to the compute_path
 method. In this module, you will have the robot find the blocked intersections using the

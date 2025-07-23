@@ -1,8 +1,6 @@
 Schedule for Module 1
 =====================
 
-.. attention:: Should we use XRPCode for easier trasition to python. At least for
-    the first day of switching to python.
 
 .. csv-table:: **Daily schedule**
     :header: Day, Activities
@@ -13,5 +11,5 @@ Schedule for Module 1
     Learn about functions draw polygons"
     3, "Talk about the Python language and it's advantages. Learn about imports and libraries.
     Translate some of the blockly code into Python"
-    4, "Install Visual Studio Code? Add the plugin and create a project."
+    4, Learn how to use XRPCode to create a project."
     5, "Create a polygon function"

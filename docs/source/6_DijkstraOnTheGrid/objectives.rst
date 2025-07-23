@@ -1,5 +1,5 @@
-Objectives
-==========
+Objectives - Module 6
+=====================
 
 In the last module, you ran the Dijkstra code to compute paths for driving through a
 number of intersections. In this module you will use the Dijkstra class from the previous

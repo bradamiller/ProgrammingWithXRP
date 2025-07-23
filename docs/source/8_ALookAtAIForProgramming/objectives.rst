@@ -1,5 +1,5 @@
-Objectives
-==========
+Objectives - Module 8
+=====================
 
 .. note:: Should the use of AI tools be part of this course?
 
