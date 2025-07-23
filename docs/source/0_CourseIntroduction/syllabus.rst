@@ -90,3 +90,8 @@ In the previous project, you were given the list of blocked intersections to avo
 the robot will detect blocked intersections as it is driving using the rangefinder on the front of the
 bot, then take these into account when planning a path.
 
+Project 7: Using Generative AI to create a version of the final project
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+You will use an AI model to generate a version of the final project. Then compare the generated version
+of the project with what you did by hand. The idea is to get experience with generative models and 
+see what it did compared to what you did yourself.
